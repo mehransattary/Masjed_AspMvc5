@@ -1,0 +1,53 @@
+﻿@model Masjed.DomainClass.ActionMe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+}
+
+<h2>جزئیات فعالیت @Model.Title</h2>
+
+<div>
+ 
+    <dl class="dl-horizontal tbl ">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Img)
+        </dt>
+
+        <dd>
+         <img  src="~/Content/Images/@Model.Img" width="400" height="300" class="img-thumbnail"/>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+   
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" }) |
+    @Html.ActionLink("بازگشت", "Index", null, new { @class = "btn btn-primary" })|
+    @Html.ActionLink("چاپ", "Print", new { @id=Model.Id}, new { @class = "btn btn-success", @target = "_blank" })
+</p>

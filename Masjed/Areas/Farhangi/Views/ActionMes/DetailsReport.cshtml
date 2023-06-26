@@ -1,0 +1,108 @@
+﻿@model  Masjed.DomainClass.ActionMe
+@using Masjed.Models;
+
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutReport.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
+    int counter = 0;
+}
+<style>
+    dl dt {
+        font-size: 24px;
+    }
+
+    dl dd {
+        font-size: 24px;
+        margin-top: 8px;
+    }
+
+    .tablDetail {
+        direction: rtl;
+    }
+
+    dl {
+        margin-right: 20px;
+    }
+</style>
+<div class="tablDetail">
+    <div class="container" style="display: -webkit-box;">
+        <h2 class="container" style="color:white">امورفرهنگی پایگاه شهیدان عبداله دخت</h2>
+    </div>
+    <div>
+
+        <dl class="dl-horizontal tbl">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title):
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateCreate):
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateCreate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Img):
+            </dt>
+
+            <dd>
+                <img src="~/Content/Images/@Model.Img" width="400" height="300" class="img-thumbnail" />
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description):
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+    </div>
+</div>
+<hr />
+@if (db.Galleries.Where(x => x.ActionId == Model.Id).Count() != 0)
+{
+    <div class="container">
+        <h3 style="font-size:32px;color:white;margin-bottom:20px;direction:rtl">گالری تصاویر</h3>
+        <ul>
+            <li>
+                @foreach (var itemGallery in db.Galleries.Where(x => x.ActionId == Model.Id))
+                {
+                    <img src="~/Content/Images/@itemGallery.ImgMain" style="margin-left:8px; height:200px;width:270px; max-height:200px;max-width:270px;" class="img-thumbnail" />
+                }
+            </li>
+        </ul>
+    </div>
+}
+@if (db.People.Where(x => x.ActionId == Model.Id).Count() != 0)
+{
+<hr />
+<div class="container">
+
+
+    <h3 style="font-size:32px;color:white;margin-bottom:30px;direction:rtl"> بسیجیان شرکت کننده( @db.People.Where(x => x.ActionId == Model.Id).Count() نفر)</h3>
+    <ul >
+        <li style="color:white;font-size:20px;direction:rtl">
+            @foreach (var itemBasigi in db.People.Where(x => x.ActionId == Model.Id))
+            {
+                {
+                    counter += 1;
+                }
+                <p>@counter _  نام: @itemBasigi.Fname  @itemBasigi.Lname *** کدملی: @itemBasigi.CodeMeli *** سن :  @itemBasigi.Age</p>
+
+
+                <p> --------------------------------------------------------------------</p>
+            }
+        </li>
+
+    </ul>
+</div>
+}
+

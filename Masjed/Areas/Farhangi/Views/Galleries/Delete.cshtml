@@ -1,0 +1,40 @@
+﻿@model Masjed.DomainClass.Gallery
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+}
+
+<h2>حذف گالری @Model.ActionMe.Title </h2>
+
+<h3>آیاازحذف مطمئن هستید؟؟؟</h3>
+<div>
+
+    <dl class="dl-horizontal tbl">
+        <dt>
+            @Html.DisplayNameFor(model => model.ActionMe.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActionMe.Title)
+        </dd>    
+
+        <dt>
+         تصویر
+        </dt>
+
+        <dd>
+            <img src="~/Content/Images/@Model.ImgLetter" width="120" height="120" class="img-thumbnail" />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" /> |
+            @Html.ActionLink("بازگشت", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

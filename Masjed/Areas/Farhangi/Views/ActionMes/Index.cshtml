@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Masjed.DomainClass.ActionMe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+}
+<link href="~/Areas/Farhangi/assets/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
+<h2>فعالیت ها</h2>
+
+<p>
+    @Html.ActionLink("جدید", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" }) |
+    <a style="margin-right:5px;font-size:medium;cursor:pointer" href="/Farhangi/ActionMes/Index"><span class="fa fa-refresh fa-2x"></span> بروزرسانی</a>
+    <div class="col-md-8">
+@using (Html.BeginForm("PrintAll", "ActionMes", FormMethod.Post))
+{
+
+
+
+        <div class="col-md-3">
+            <label class="sr-only" for="exampleInput3">ازتاریخ</label>
+            <div class="input-group">
+                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#exampleInput1" data-mdpersiandatetimepicker="" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1398,&quot;Month&quot;:1,&quot;Day&quot;:22,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" style="cursor: pointer;" data-original-title="" title="" data-mdpersiandatetimepickershowing="false">
+                    <span class="fa fa-calendar fa-2x" style="cursor:pointer"></span>
+                </div>
+                <input name="AsDate" type="text" style="border: 1px solid blue;" class="form-control" readonly="readonly" id="exampleInput1" placeholder="از تاریخ..." data-mddatetimepicker="true" data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1398,&quot;Month&quot;:1,&quot;Day&quot;:22,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-original-title="" title="" data-mdpersiandatetimepickershowing="true">
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+            <label class="sr-only" for="exampleInput3">تا تاریخ</label>
+            <div class="input-group">
+                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#exampleInput2" data-mdpersiandatetimepicker="" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1398,&quot;Month&quot;:1,&quot;Day&quot;:22,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" style="cursor: pointer;" data-original-title="" title="" data-mdpersiandatetimepickershowing="false">
+                    <span class="fa fa-calendar fa-2x" style="cursor:pointer"></span>
+                </div>
+                <input name="ToDate" type="text" readonly="readonly" style="border: 1px solid blue;" class="form-control" id="exampleInput2" placeholder="تا تاریخ..." data-mddatetimepicker="true" data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1398,&quot;Month&quot;:1,&quot;Day&quot;:22,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-original-title="" title="" data-mdpersiandatetimepickershowing="true">
+
+
+            </div>
+
+        </div>
+        <button id="btn_Print" type="submit" class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5" , target = "_blank">
+                <span class="fa fa-print "></span>
+                چاپ
+            </button>
+
+         
+
+}
+    </div>
+
+
+@using (Html.BeginForm("Index", "ActionMes", FormMethod.Post))
+{
+
+    <div class="input-group col-md-4 ">
+
+        <span class="input-group-btn">
+            <button type="submit" id="SearchIndex" class="btn waves-effect waves-light btn-primary"><i class="fa fa-search"></i></button>
+        </span>
+       
+        <input name="str" id="example-input1-group2" list="item" class="form-control " placeholder="جستجو..." />
+        <datalist id="item" style="direction: rtl;"></datalist>
+    </div>
+}
+
+</p>
+<div id="MelkList">
+    @Html.Partial("_Index", Model)
+</div>
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+<script src="~/Areas/Farhangi/assets/js/jquery.min.js"></script>
+<script src="~/Areas/Farhangi/assets/MdBootstrapPersianDateTimePicker/jalaali.js"></script>
+<script src="~/Areas/Farhangi/assets/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+
+@*<script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+
+        $('#example-input1-group2').on("input", function () {
+
+            var str = $('#example-input1-group2').val();
+
+            if ($.trim(str).length) {
+                getData(str);
+            }
+        });
+
+        function getData(str) {
+            debugger
+            $.ajax({
+                type: 'GET',
+                url: '/ActionMes/GetData',
+                data: { "str": str },
+                dataType: 'json',
+                success: function (data) {
+                    debugger
+                    if (data != null) {
+                        $("#item").empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $("#item").append("<option value=" + data[i].Title + ">" + data[i].Title + "</option>");
+                        }
+                    }
+                },
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR + textStatus + errorThrown);
+                }
+            });
+        }
+    });
+</script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $(document).on("click", "#contentPager a[href]", function () {
+            $.ajax({
+                url: $(this).attr("href"),
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    $('#MelkList').html(result);
+                }
+            });
+            return false;
+        });
+
+
+
+    });
+</script>
+@*<script>
+    $(document).ready(function () {
+
+        $("#SearchIndex").click(function () {
+            var str = $("#example-input1-group2").val();
+            $.ajax({
+                url: '/ActionMes/Search',
+                type: 'GET',
+                data:str
+                });
+            
+        });
+  
+    });
+</script>*@

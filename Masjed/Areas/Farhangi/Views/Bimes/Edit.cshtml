@@ -1,0 +1,88 @@
+﻿@model Masjed.DomainClass.Bime
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+}
+<link href="~/Areas/Farhangi/assets/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
+<h2>ویرایش @Model.Title</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal tbl">
+    
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PriceBime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PriceBime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PriceBime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AsDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <label class="sr-only" for="exampleInput3">ازتاریخ</label>
+                <div class="input-group">
+                    <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#exampleInput4" data-mdpersiandatetimepicker="" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1398,&quot;Month&quot;:1,&quot;Day&quot;:22,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" style="cursor: pointer;" data-original-title="" title="" data-mdpersiandatetimepickershowing="false">
+                        <span class="glyphicon glyphicon-calendar">کلیک کن!</span>
+                    </div>
+                    @*<input type="text" class="form-control" id="exampleInput3" placeholder="تاریخ" data-mddatetimepicker="true" data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1398,&quot;Month&quot;:1,&quot;Day&quot;:22,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-original-title="" title="" data-mdpersiandatetimepickershowing="true">*@
+                    @Html.EditorFor(model => model.AsDate, new { htmlAttributes = new { @class = "form-control", id = "exampleInput4", @readonly = "readonly", placeholder = "تاریخ", title = "", mdpersiandatetimepicker = "", placement = "right", trigger = "focus", enabletimepicker = "false", mdpersiandatetimepickerselecteddatetime = "{&quot;Year&quot;:1398,&quot;Month&quot;:1,&quot;Day&quot;:22,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}", mdpersiandatetimepickershowing = "true" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.AsDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <label class="sr-only" for="exampleInput3">تا تاریخ</label>
+                <div class="input-group">
+                    <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#exampleInput3" data-mdpersiandatetimepicker="" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1398,&quot;Month&quot;:1,&quot;Day&quot;:22,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" style="cursor: pointer;" data-original-title="" title="" data-mdpersiandatetimepickershowing="false">
+                        <span class="glyphicon glyphicon-calendar"> کلیک کن! </span>
+                    </div>
+                    @*<input type="text" class="form-control" id="exampleInput3" placeholder="تاریخ" data-mddatetimepicker="true" data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1398,&quot;Month&quot;:1,&quot;Day&quot;:22,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-original-title="" title="" data-mdpersiandatetimepickershowing="true">*@
+                    @Html.EditorFor(model => model.TaDate, new { htmlAttributes = new { @class = "form-control", id = "exampleInput3", @readonly = "readonly", placeholder = "تاریخ", title = "", mdpersiandatetimepicker = "", placement = "right", trigger = "focus", enabletimepicker = "false", mdpersiandatetimepickerselecteddatetime = "{&quot;Year&quot;:1398,&quot;Month&quot;:1,&quot;Day&quot;:22,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}", mdpersiandatetimepickershowing = "true" } })
+
+                </div>
+                @Html.ValidationMessageFor(model => model.TaDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+     
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ذخیره" class="btn btn-success btn-block" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("بازگشت", "Index", null, new { @class = "btn btn-primary" })
+</div>
+
+@section scripts{
+    <script src="~/Areas/Farhangi/assets/MdBootstrapPersianDateTimePicker/jalaali.js"></script>
+    <script src="~/Areas/Farhangi/assets/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+
+
+
+}

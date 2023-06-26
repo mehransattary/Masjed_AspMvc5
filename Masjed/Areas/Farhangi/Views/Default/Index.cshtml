@@ -1,0 +1,113 @@
+﻿@model  IEnumerable< Masjed.DomainClass.ActionMe>
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+    }
+
+
+
+
+
+
+
+
+
+<h1 class="container">صفحه اصلی</h1>
+    <div class="content " >
+        <div class="container">
+       
+            <!-- SECTION FILTER
+            ================================================== -->
+        
+
+            <div class="row port m-b-20" style="direction:rtl">
+                <div class="portfolioContainer" style="position: relative; height: 718.016px;">
+                @foreach (var item in Model)
+                {
+                  
+                    <div class="col-sm-6 col-lg-3 col-md-4 natural creative" style="position: absolute; left: 348px; top: 0px;height:360px;width:340px;">
+                        <div class="gal-detail thumb">
+                            <a href="~/Content/Images/@item.Img" class="image-popup" title="Screenshot-3">
+                                <img src="~/Content/Images/@item.Img" class="thumb-img" alt="work-thumbnail" style="height:250px;width:300px;">
+                            </a>
+                          <a href="/Farhangi/ActionMes/Details/@item.Id"><h4>@item.Title </h4><h3>@item.DateCreate</h3></a> 
+                        
+                        </div>
+                    </div>
+                }
+                   
+
+
+                </div><!-- end portfoliocontainer-->
+            </div> <!-- End row -->
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        var resizefunc = [];
+    </script>
+
+
+
+
+
+
+
+<script src="~/Areas/Farhangi/assets/js/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(window).load(function () {
+            var $container = $('.portfolioContainer');
+            $container.isotope({
+                filter: '*',
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                }
+            });
+
+            $('.portfolioFilter a').click(function () {
+                $('.portfolioFilter .current').removeClass('current');
+                $(this).addClass('current');
+
+                var selector = $(this).attr('data-filter');
+                $container.isotope({
+                    filter: selector,
+                    animationOptions: {
+                        duration: 750,
+                        easing: 'linear',
+                        queue: false
+                    }
+                });
+                return false;
+            });
+        });
+        $(document).ready(function () {
+            $('.image-popup').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                mainClass: 'mfp-fade',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+                }
+            });
+        });
+    </script>
+

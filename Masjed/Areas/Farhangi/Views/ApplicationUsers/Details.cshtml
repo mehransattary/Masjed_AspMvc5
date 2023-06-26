@@ -1,0 +1,52 @@
+﻿@model Masjed.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+}
+
+<h2>جزئیات @Model.UserName </h2>
+
+<div>
+
+    <dl class="dl-horizontal tbl">
+        <dt>
+       ایمیل
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+   
+
+    
+
+
+        <dt>
+          تلفن
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+
+      
+
+
+
+        <dt>
+           نام
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" }) |
+    @Html.ActionLink("بازگشت", "Index", null, new { @class = "btn btn-primary" })
+</p>

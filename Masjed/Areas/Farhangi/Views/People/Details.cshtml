@@ -1,0 +1,65 @@
+﻿@model Masjed.DomainClass.Person
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+}
+<h2>جزئیات بسیجی @Model.Fname @Model.Lname</h2>
+
+<div>
+
+    <dl class="dl-horizontal tbl">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bime.AsDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bime.AsDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeMeli)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeMeli)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsBime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsBime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("بازگشت", "Index", null, new { @class = "btn btn-primary" })
+</p>

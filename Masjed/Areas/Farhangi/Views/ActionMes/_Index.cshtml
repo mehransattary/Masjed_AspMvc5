@@ -1,0 +1,124 @@
+﻿
+
+@model PagedList.IPagedList<Masjed.DomainClass.ActionMe>
+@using PagedList.Mvc
+@using Masjed.Models;
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+
+<div class="card-box" style="background-color:#2196F3;" id="some_grid_container">
+
+
+
+
+
+
+    <table class="table tbl  ">
+        <tr>
+            <th>
+           عنوان
+            </th>
+            <th>
+              تاریخ ایجاد
+            </th>
+            <th>
+                تصویر
+            </th>
+         
+            <th>
+                عملیات
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreate)
+                </td>
+                <td>
+                    <img src="~/Content/Images/@item.Img" style="height:100px;width:150px; max-height:150px;max-width:150px;" class="img-thumbnail" />
+                </td>
+          
+
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("جزئیات", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })|
+                    @Html.ActionLink("گالری تصاویر", "Index", "Galleries", new { id = item.Id }, new { @class = "btn btn-warning" })|
+                    @Html.ActionLink("بسیجیان شرکت کننده", "Index", "People", new { id = item.Id }, new { @class = "btn btn-inverse btn-bordred waves-effect w-md waves-light m-b-5" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="row">
+        <style>
+            .pagep1 {
+                display: inline-block;
+                margin-top: 1px;
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+                .pagep1 a {
+                    /*color: black;*/
+                    float: left;
+                    padding: 10px 10px;
+                    text-decoration: none;
+                    transition: background-color .3s;
+                    border: 1px solid #dee2e6;
+                    box-shadow: 0 0 2rem 0 #35b8e0 inset;
+                }
+
+                    .pagep1 a.active {
+                        background-color: darkgray;
+                        color: blue;
+                        border: 1px solid #4CAF50;
+                    }
+
+                    .pagep1 a:hover:not(.active) {
+                        background-color: darkslategrey;
+                    }
+        </style>
+        <div class="pagedList pagep1 container " id="contentPager">
+            @Html.PagedListPager(Model, page => Url.Action("Index", "ActionMes", new { page }),
+                                    /*     PagedListRenderOptions.PageNumbersOnly*/
+                                    //PagedListRenderOptions.Classic
+                                    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions
+                                    {
+                                        LinkToFirstPageFormat = "اولین",
+                                        LinkToPreviousPageFormat = "قبلی",
+                                        LinkToNextPageFormat = "بعدی",
+                                        LinkToLastPageFormat = "آخرین",
+                                        //DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                        //DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                        //DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                        //DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                        MaximumPageNumbersToDisplay = 7,
+                                        DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                                    }, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "some_grid_container" }))
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+

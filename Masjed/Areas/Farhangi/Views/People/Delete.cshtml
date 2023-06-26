@@ -1,0 +1,72 @@
+﻿@model Masjed.DomainClass.Person
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+}
+
+<h2>حذف بسیجی @Model.Fname @Model.Lname</h2>
+
+<h3>آیاازحذف مطمئن هستید؟؟؟</h3>
+<div>
+
+    <dl class="dl-horizontal tbl">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bime.AsDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bime.AsDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeMeli)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeMeli)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsBime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsBime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" /> |
+            @Html.ActionLink("بازگشت", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masjed", "Masjed\Masjed.csproj", "{EBBAE37F-574D-44E6-A9A2-9C944DA22796}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masjed.DataLayer", "Masjed.DataLayer\Masjed.DataLayer.csproj", "{9E031F9B-3C43-4E43-BBC2-0657E695B391}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masjed.Utilities", "Masjed.Utilities\Masjed.Utilities.csproj", "{8838B219-BFF2-4E39-A9C3-8309ACB5E575}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBBAE37F-574D-44E6-A9A2-9C944DA22796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBBAE37F-574D-44E6-A9A2-9C944DA22796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBBAE37F-574D-44E6-A9A2-9C944DA22796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBBAE37F-574D-44E6-A9A2-9C944DA22796}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E031F9B-3C43-4E43-BBC2-0657E695B391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E031F9B-3C43-4E43-BBC2-0657E695B391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E031F9B-3C43-4E43-BBC2-0657E695B391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E031F9B-3C43-4E43-BBC2-0657E695B391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8838B219-BFF2-4E39-A9C3-8309ACB5E575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8838B219-BFF2-4E39-A9C3-8309ACB5E575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8838B219-BFF2-4E39-A9C3-8309ACB5E575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8838B219-BFF2-4E39-A9C3-8309ACB5E575}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

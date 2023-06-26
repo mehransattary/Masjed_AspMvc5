@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Masjed.Models.ApplicationUser>
+@using Masjed.Models;
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+    int counter = 0;
+
+}
+@{
+
+    var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+    var role = rm.FindByName("admin");
+    bool result = User.IsInRole(role.Name);
+
+}
+
+
+
+<div class="col-sm-12">
+    <div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="m-b-30">
+                        <h2 class="pull-right">کاربران</h2>
+
+                        @Html.ActionLink("جدید", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" })
+                                              
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="editable-responsive">
+                <div id="datatable-editable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <div class="row">
+
+                    </div>
+
+                </div><div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-striped dataTable no-footer" id="datatable-editable" role="grid" aria-describedby="datatable-editable_info">
+                            <thead>
+
+
+
+                                <tr role="row">
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="فعالیت" style="width:20px;">شماره</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-sort="ascending" aria-label=: activate to sort column descending" style="width: 238px;">نام کاربری</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-sort="ascending" aria-label=: activate to sort column descending" style="width: 238px;">ایمیل</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-sort="ascending" aria-label=: activate to sort column descending" style="width: 238px;">نقش</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-sort="ascending" aria-label=: activate to sort column descending" style="width: 238px;">تاییدیه ایمیل</th>
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="فعالیت" style="width: 156px;">فعالیت</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+
+
+                                @foreach (var item in Model)
+                                {
+                                    counter += 1;
+
+                                    <tr class="gradeX odd" role="row">
+
+                                        <td class="sorting_1">@counter</td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UserName)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @if (@rm.FindById(item.Roles.Where(x => x.UserId == item.Id).FirstOrDefault().RoleId).Name == "Admin")
+                                            {
+                                                <p>مدیر</p>
+                                            }
+                                            else
+                                            {
+                                                <p>کاربرعادی</p>
+                                            }
+
+                                        </td>
+
+                                        <td>
+                                            @if (item.EmailConfirmed == true)
+                                            {
+                                                <p>تاییدشده</p>
+                                            }
+                                            else
+                                            {
+                                                <p>تاییدنشده</p>
+                                            }
+                                        </td>
+                                        <td class="actions">
+                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+
+                                            @Html.ActionLink("ویرایش", "Edit", "ApplicationUsers", new { id = item.Id }, new { @class = "btn btn-primary" }) |
+                                            @Html.ActionLink("جزئیات", "Details", "ApplicationUsers", new { id = item.Id }, new { @class = "btn btn-info" }) |
+                                            @Html.ActionLink("حذف", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })|
+
+
+                                        </td>
+
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end: panel body -->
+
+</div> <!-- end panel -->
+
+
+
+
+

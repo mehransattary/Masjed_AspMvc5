@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Masjed.DomainClass.Person>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+}
+
+<h2>بسیجیان</h2>
+
+<p>
+    @Html.ActionLink("جدید", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" })
+    @Html.ActionLink("بازگشت به فعالیت ها", "Index", "ActionMes", null, new { @class = "btn btn-primary" })
+ 
+</p>
+<table class="table tbl " >
+    <tr>
+        <th>
+           فعالیت
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bime.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodeMeli)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsBime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Session["ActionName"].ToString()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bime.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodeMeli)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsBime)
+        </td>
+        <td>
+            @Html.ActionLink("ویرایش", "Edit", new { id=item.Id },  new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("جزئیات", "Details", new { id = item.Id },  new { @class = "btn btn-info" }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.Id },  new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

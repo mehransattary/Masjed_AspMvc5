@@ -1,0 +1,52 @@
+﻿@model Masjed.DomainClass.Bime
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+}
+
+<h2>جزئیات بیمه @Model.Title</h2>
+
+<div>
+
+    <dl class="dl-horizontal tbl">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceBime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceBime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AsDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AsDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaDate)
+        </dd>
+
+     
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" }) |
+    @Html.ActionLink("بازگشت", "Index", null, new { @class = "btn btn-primary" })
+</p>

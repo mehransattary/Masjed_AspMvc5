@@ -1,0 +1,10 @@
+﻿.tbl{
+        padding: 20px;
+    box-shadow: 0 0px 8px 0 #3b3e47, 0 1px 0px 0 rgba(0, 0, 0, 0.02);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-clip: padding-box;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}

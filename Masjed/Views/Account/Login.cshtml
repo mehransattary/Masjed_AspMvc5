@@ -1,0 +1,50 @@
+﻿@using Masjed.Models
+@model LoginViewModel
+@{
+    Layout = "~/Areas/Farhangi/Views/Shared/_LayoutFarhangi.cshtml";
+}
+
+
+
+<div class="account-pages"></div>
+<div class="clearfix"></div>
+<div class="wrapper-page">
+    <div class="text-center">
+        <a href="index.html" class="logo"><span>پایگاه شهیدان عبداله دخت </span></a>
+        <h5 class="text-muted m-t-0 font-600">صفحه ورود به امور فرهنگی شهیدان عبداله دخت</h5>
+    </div>
+    <div class="m-t-40 card-box">
+        <div class="text-center">
+            <h4 class="text-uppercase font-bold m-b-0">ورود</h4>
+        </div>
+        <div class="panel-body">
+
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" name="Email" type="text" required="" placeholder="نام کاربری">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control" name="Password" type="password" required="" placeholder="پسورد">
+                        </div>
+                    </div>
+                    <div class="form-group text-center m-t-30">
+                        <div class="col-xs-12">
+                            <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">ورود</button>
+                        </div>
+                    </div>
+                }
+
+            </section>
+        </div>
+    </div>
+</div>

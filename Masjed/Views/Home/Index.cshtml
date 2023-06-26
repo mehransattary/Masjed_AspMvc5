@@ -1,0 +1,164 @@
+﻿@model IEnumerable<Masjed.DomainClass.ActionMe>
+@using Masjed.Models;
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav"style="font-family: 'iran', sans-serif;">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">پایگاه شهیدان عبداله دخت</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/Farhangi/Default/Index">صفحه مدیریت</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Masthead -->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Avatar Image -->
+        <img class="masthead-avatar mb-5" src="~/Content/img/N82677443-71892333.jpg" />
+
+
+        <!-- Masthead Heading -->
+        <h1 class="masthead-heading text-uppercase mb-0" style="font-family: 'iran', sans-serif;" >امور فرهنگی شهیدان عبداله دخت</h1>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+
+
+    </div>
+</header>
+
+<!-- Portfolio Section -->
+<section class="page-section portfolio" id="portfolio"style="font-family: iransans;">
+    <div class="container">
+
+        <!-- Portfolio Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0"style="font-family: 'iran', sans-serif;">فعالیت ها</h2>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <!-- Portfolio Grid Items -->
+        <div class="row">
+
+            @foreach (var item in db.ActionMes.OrderBy(x => x.DateCreate).Take(6).ToList())
+            {
+               
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#x-@item.Id">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="~/Content/Images/@item.Img"style="height:350px;width:350px;" alt="">
+                    </div>
+                </div>
+            
+                foreach (var item1 in db.ActionMes.Where(x=>x.Id==item.Id))
+                {
+                    <div class="portfolio-modal modal fade" id="x-@item.Id" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"style="font-family: iransans;">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                </button>
+                                <div class="modal-body text-center">
+                                    <div class="container">
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-8">
+                                                <!-- Portfolio Modal - Title -->
+                                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0"style="font-family: 'iran', sans-serif;">@item.Title</h2>
+                                                <!-- Icon Divider -->
+                                                <div class="divider-custom">
+                                                    <div class="divider-custom-line"></div>
+                                                    <div class="divider-custom-icon">
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                    <div class="divider-custom-line"></div>
+                                                </div>
+                                                <!-- Portfolio Modal - Image -->
+                                                <img class="img-fluid rounded mb-5" src="~/Content/Images/@item.Img"style="height:350px;width:580px;" alt="">
+                                                <p class="mb-5">@item.DateCreate</p>
+                                                <p class="mb-5"style="font-family: 'iran', sans-serif;">@item.Description</p>
+                                                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                                                    <i class="fas fa-times fa-fw"></i>
+                                                   خروج
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+
+            }
+         
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
